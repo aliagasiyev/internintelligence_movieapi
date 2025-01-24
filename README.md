@@ -1,3 +1,7 @@
+
+![Screenshot 2025-01-24 233519](https://github.com/user-attachments/assets/e2fcceca-0030-48e3-a272-c2257a2c6130)
+
+
 # InternIntelligence_PortfoliAPI
 # Movie API Development
 
