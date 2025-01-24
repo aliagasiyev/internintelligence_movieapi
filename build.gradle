@@ -1,0 +1,67 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+}
+
+group = 'org.adem'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Database Drivers
+    runtimeOnly 'org.postgresql:postgresql:42.7.2' // PostgreSQL Driver
+    runtimeOnly 'com.mysql:mysql-connector-j:8.2.0' // MySQL Driver (latest version)
+
+    // Lombok for reducing boilerplate code
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // MapStruct for DTO to Entity Mapping
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+    // SpringDoc OpenAPI for API documentation
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
+
+    // Jakarta Validation API for bean validation
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2' // Use Jakarta EE 9 API
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+
+    // Devtools for hot-reloading during development
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Testing dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Includes JUnit 5 and Mockito
+    testImplementation 'org.mockito:mockito-core:5.0.0' // Core Mockito
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0' // Mockito with JUnit 5
+    testImplementation 'org.assertj:assertj-core:3.24.2' // AssertJ for fluent assertions
+
+    // Testcontainers for Integration Testing
+    testImplementation 'org.testcontainers:junit-jupiter:1.19.0' // Testcontainers JUnit 5 integration
+    testImplementation 'org.testcontainers:postgresql:1.19.0' // PostgreSQL container for tests
+
+    // H2 Database for testing
+    runtimeOnly 'com.h2database:h2:2.2.224' // In-memory database for tests
+}
+
+test {
+    useJUnitPlatform() // Use JUnit 5 for testing
+}
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorPath = configurations.annotationProcessor
+}
+
+configurations {
+    annotationProcessor
+}
